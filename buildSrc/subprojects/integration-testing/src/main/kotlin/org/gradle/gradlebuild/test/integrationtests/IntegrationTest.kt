@@ -18,7 +18,6 @@ package org.gradle.gradlebuild.test.integrationtests
 
 import org.gradle.api.tasks.CacheableTask
 
-
 /**
  * Verifies the correct behavior of a feature, as opposed to just a small unit of code.
  * Usually referred to as 'functional tests' in literature, but our code base has historically
