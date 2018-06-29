@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-abstract class AbstractLazyModuleComponentResolveMetadata extends AbstractModuleComponentResolveMetadata {
+public abstract class AbstractLazyModuleComponentResolveMetadata extends AbstractModuleComponentResolveMetadata {
     private final VariantMetadataRules variantMetadataRules;
     private final ImmutableMap<String, Configuration> configurationDefinitions;
 
@@ -68,7 +68,7 @@ abstract class AbstractLazyModuleComponentResolveMetadata extends AbstractModule
         return variantMetadataRules;
     }
 
-    ImmutableMap<String, Configuration> getConfigurationDefinitions() {
+    public ImmutableMap<String, Configuration> getConfigurationDefinitions() {
         return configurationDefinitions;
     }
 
