@@ -157,6 +157,7 @@ public class ModuleComponentResolveMetadataSerializer extends AbstractSerializer
                     case MAVEN_DEPENDENCY_METADATA:
                         MavenDependencyDescriptor mavenDependencyDescriptor = readMavenDependency(decoder);
                         builder.add(RealisedMavenModuleResolveMetadata.contextualize(configurationMetadata, metadata.getId(), mavenDependencyDescriptor, metadata.isImprovedPomSupportEnabled()));
+                        break;
                     case IVY_DEPENDENCY_METADATA:
                         throw new IllegalStateException("Unexpected Ivy dependency for Maven module");
                     default:
@@ -218,6 +219,7 @@ public class ModuleComponentResolveMetadataSerializer extends AbstractSerializer
         for (int i = 0; i < configurationsCount; i++) {
             String configurationName = decoder.readString();
             Configuration configuration = configurationDefinitions.get(configurationName);
+            assert configuration != null;
             ImmutableList<String> hierarchy = AbstractRealisedModuleComponentResolveMetadata.constructHierarchy(configuration, configurationDefinitions);
             ImmutableAttributes attributes = attributeContainerSerializer.read(decoder);
             ImmutableCapabilities capabilities = readCapabilities(decoder);
@@ -236,6 +238,7 @@ public class ModuleComponentResolveMetadataSerializer extends AbstractSerializer
                     case IVY_DEPENDENCY_METADATA:
                         IvyDependencyDescriptor ivyDependency = readIvyDependency(decoder);
                         builder.add(configurationHelper.contextualize(configurationMetadata, metadata.getId(), ivyDependency));
+                        break;
                     case MAVEN_DEPENDENCY_METADATA:
                         throw new IllegalStateException("Unexpected Maven dependency for Ivy module");
                     default:
